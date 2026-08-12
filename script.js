@@ -27,17 +27,17 @@ function renderTask(t) {
     let li = document.createElement("li");
     li.className = "priority-" + t.priority;
 
-    let details = [${t.category}];
+    let details = "[" + t.category + "]";
     if (t.date) details += " 📅 " + t.date;
     if (t.time) details += " ⏰ " + t.time;
 
-    li.innerHTML = `
-        <span class="taskText" onclick="completeTask(this)" style="${t.completed ? 'text-decoration:line-through;color:gray;' : ''}">
-            ${t.task} <small>${details}</small>
-        </span>
-        <button onclick="editTask(this)">Edit</button>
-        <button onclick="deleteTask(this)">Delete</button>
-    `;
+    li.innerHTML =
+        '<span class="taskText" onclick="completeTask(this)" style="' +
+        (t.completed ? "text-decoration:line-through;color:gray;" : "") +
+        '">' + t.task + ' <small>' + details + '</small></span>' +
+        '<button onclick="editTask(this)">Edit</button>' +
+        '<button onclick="deleteTask(this)">Delete</button>';
+
     document.getElementById("taskList").appendChild(li);
 }
 
@@ -89,7 +89,12 @@ function saveTask(t) {
 
 function loadTasks() {
     let tasks = getTasks();
-    tasks.forEach(t => renderTask(t));
+    tasks.forEach(function (t) {
+        renderTask(t);
+        if (t.date && t.time && !t.completed) {
+            scheduleReminder(t.task, t.date, t.time);
+        }
+    });
     updateCount();
 }
 
@@ -126,7 +131,7 @@ function scheduleReminder(task, date, time) {
     let delay = reminderTime - new Date();
 
     if (delay > 0) {
-        setTimeout(() => {
+        setTimeout(function () {
             if (Notification.permission === "granted") {
                 new Notification("Task Reminder ⏰", { body: task });
             } else {
