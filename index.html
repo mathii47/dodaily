@@ -6,10 +6,24 @@
 </head>
 <body>
 
+    <button onclick="toggleDarkMode()" id="darkBtn">🌙 Dark Mode</button>
     <h1>My To-Do List</h1>
+    <p id="taskCount">0 tasks pending</p>
 
     <input type="text" id="taskInput" placeholder="Enter your task">
+    <select id="taskCategory">
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Study">Study</option>
+        <option value="Other">Other</option>
+    </select>
+    <input type="date" id="taskDate">
     <input type="time" id="taskTime">
+    <select id="taskPriority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+    </select>
     <button onclick="addTask()">Add Task</button>
 
     <ul id="taskList"></ul>
