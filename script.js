@@ -30,8 +30,8 @@ function renderTask(t) {
     li.className = "priority-" + t.priority;
 
     let details = "[" + t.category + "]";
-    if (t.date) details += " 📅 " + t.date;
-    if (t.time) details += " ⏰ " + t.time;
+    if (t.date) details += " Date: " + t.date;
+    if (t.time) details += " Time: " + t.time;
 
     li.innerHTML =
         '<span class="taskText" onclick="completeTask(this)" style="' +
@@ -152,8 +152,6 @@ function scheduleReminder(task, date, time) {
     }
 }
 
-/* ---------- Side drawer navigation ---------- */
-
 function openDrawer() {
     document.getElementById("overlay").classList.add("show");
     document.getElementById("sideDrawer").classList.add("open");
@@ -175,12 +173,10 @@ function backToMenu() {
     document.getElementById("sideDrawer").classList.add("open");
 }
 
-/* ---------- Profile ---------- */
-
 function loadProfile() {
     let name = localStorage.getItem("profileName");
     if (name) {
-        document.getElementById("profileGreeting").innerText = "Hi, " + name + " 👋";
+        document.getElementById("profileGreeting").innerText = "Hi, " + name;
     }
 }
 
@@ -194,12 +190,10 @@ function openProfile() {
         document.getElementById("profileGreeting").innerText = "";
     } else {
         localStorage.setItem("profileName", name);
-        document.getElementById("profileGreeting").innerText = "Hi, " + name + " 👋";
+        document.getElementById("profileGreeting").innerText = "Hi, " + name;
     }
     closeDrawer();
 }
-
-/* ---------- Settings: layout, theme, font ---------- */
 
 function loadSettings() {
     let layout = localStorage.getItem("layout") || "compact";
@@ -236,8 +230,6 @@ function applyFontSize() {
     document.body.classList.add("font-" + val);
 }
 
-/* ---------- Notification settings ---------- */
-
 function toggleNotifPermission() {
     closeDrawer();
     if (Notification.permission === "granted") {
@@ -255,8 +247,6 @@ function toggleNotifPermission() {
     }
 }
 
-/* ---------- Sort ---------- */
-
 function sortTasks() {
     closeDrawer();
     let choice = prompt("Sort by:\n1 = Date\n2 = Priority\n3 = Category\n\nEnter 1, 2 or 3:");
@@ -268,4 +258,49 @@ function sortTasks() {
         tasks.sort(function (a, b) {
             return (a.date || "9999").localeCompare(b.date || "9999");
         });
-    } else if
+    } else if (choice.trim() === "2") {
+        let order = { high: 0, medium: 1, low: 2 };
+        tasks.sort(function (a, b) {
+            return order[a.priority] - order[b.priority];
+        });
+    } else if (choice.trim() === "3") {
+        tasks.sort(function (a, b) {
+            return a.category.localeCompare(b.category);
+        });
+    } else {
+        return;
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderAllTasks();
+}
+
+function exportTasks() {
+    closeDrawer();
+    let tasks = getTasks();
+    let dataStr = JSON.stringify(tasks, null, 2);
+    let blob = new Blob([dataStr], { type: "application/json" });
+    let url = URL.createObjectURL(blob);
+
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "dodaily-backup.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+function clearAllTasks() {
+    closeDrawer();
+    let confirmClear = confirm("This will delete ALL tasks. Are you sure?");
+    if (confirmClear) {
+        localStorage.removeItem("tasks");
+        renderAllTasks();
+    }
+}
+
+function aboutApp() {
+    closeDrawer();
+    alert("dodaily\nA simple To-Do List app\n\nBuilt with HTML, CSS and JavaScript\nHosted on GitHub Pages");
+}
