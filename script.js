@@ -64,3 +64,89 @@ function deleteTask(button) {
     li.remove();
     updateCount();
 }
+function editTask(button) {
+    let li = button.parentElement;
+    let tasks = getTasks();
+    let index = Array.from(li.parentElement.children).indexOf(li);
+    let t = tasks[index];
+
+    let newTask = prompt("Edit task:", t.task);
+    if (newTask === null) return;
+    let newDate = prompt("Edit date (YYYY-MM-DD) or leave blank:", t.date || "");
+    let newTime = prompt("Edit time (HH:MM) or leave blank:", t.time || "");
+
+    t.task = newTask.trim();
+    t.date = newDate.trim();
+    t.time = newTime.trim();
+
+    tasks[index] = t;
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
+    li.remove();
+    renderTask(t);
+    if (t.date && t.time) scheduleReminder(t.task, t.date, t.time);
+}
+
+function getTasks() {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+}
+
+function saveTask(t) {
+    let tasks = getTasks();
+    tasks.push(t);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    let tasks = getTasks();
+    tasks.forEach(function (t) {
+        renderTask(t);
+        if (t.date && t.time && !t.completed) {
+            scheduleReminder(t.task, t.date, t.time);
+        }
+    });
+    updateCount();
+}
+
+function updateTaskInStorage(li, key, value) {
+    let tasks = getTasks();
+    let index = Array.from(li.parentElement.children).indexOf(li);
+    if (tasks[index]) {
+        tasks[index][key] = value;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+}
+
+function removeTaskFromStorage(li) {
+    let tasks = getTasks();
+    let index = Array.from(li.parentElement.children).indexOf(li);
+    tasks.splice(index, 1);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function updateCount() {
+    let count = document.querySelectorAll("#taskList li").length;
+    document.getElementById("taskCount").innerText = count + " tasks pending";
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+function scheduleReminder(task, date, time) {
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission();
+    }
+    let reminderTime = new Date(date + "T" + time);
+    let delay = reminderTime - new Date();
+
+    if (delay > 0) {
+        setTimeout(function () {
+            if (Notification.permission === "granted") {
+                new Notification("Task Reminder", { body: task });
+            } else {
+                alert("Reminder: " + task);
+            }
+        }, delay);
+    }
+}
