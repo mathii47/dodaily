@@ -680,7 +680,8 @@ function applyTheme() {
         "theme-green",
         "theme-orange",
         "theme-pink",
-        "theme-black"
+        "theme-black",
+        "theme-white"
     );
 
     document.body.classList.add(
