@@ -41,18 +41,18 @@ body {
     border-radius: 8px;
 }
 
-/* ---------- Overlay ---------- */
 #overlay {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.4);
     z-index: 200;
 }
 #overlay.show { display: block; }
 
-/* ---------- Side drawer ---------- */
 .drawer {
     position: fixed;
     top: 0;
@@ -82,7 +82,7 @@ body {
     background: none;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     cursor: pointer;
 }
 
@@ -93,9 +93,8 @@ body {
 }
 
 .drawer-list button {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: block;
+    width: 100%;
     text-align: left;
     padding: 14px 12px;
     border: none;
@@ -103,4 +102,63 @@ body {
     color: white;
     font-size: 14.5px;
     cursor: pointer;
-    border-radius:
+    border-radius: 10px;
+}
+
+.drawer-list button:hover {
+    background: #2c2c2e;
+}
+
+.drawer-list button.danger {
+    color: #ff6b6b;
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 12px;
+    font-size: 14px;
+}
+
+.setting-row select {
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: none;
+}
+
+.priority-high { border-left: 5px solid red; }
+.priority-medium { border-left: 5px solid orange; }
+.priority-low { border-left: 5px solid green; }
+
+body.dark { background: #222; color: white; }
+body.dark li { background: #333; color: white; }
+body.dark #profileGreeting { color: #aaa; }
+body.dark .topbar-icons button { background: #333; color: white; }
+
+li { list-style: none; margin: 8px auto; padding: 8px; text-align: left; max-width: 600px; }
+small { color: #666; }
+
+body.layout-compact input, body.layout-compact select, body.layout-compact button {
+    font-size: 13px;
+}
+body.layout-spacious {
+    padding: 50px 40px;
+}
+body.layout-spacious input, body.layout-spacious select, body.layout-spacious button {
+    font-size: 16px;
+    padding: 10px;
+}
+body.layout-spacious li {
+    max-width: 800px;
+    padding: 14px;
+}
+
+body.font-small { font-size: 13px; }
+body.font-medium { font-size: 15px; }
+body.font-large { font-size: 18px; }
+
+body.theme-indigo #menuBtn { background: #4F46E5; color: white; }
+body.theme-green #menuBtn { background: #10B981; color: white; }
+body.theme-orange #menuBtn { background: #F59E0B; color: white; }
+body.theme-pink #menuBtn { background: #EC4899; color: white; }
