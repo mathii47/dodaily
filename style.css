@@ -299,7 +299,9 @@ button:hover {
 .theme-black {
     --theme-color: #000000;
 }
-
+.theme-white{
+    --theme-color: #ffffff;
+}
 
 /* Theme buttons */
 
@@ -307,7 +309,8 @@ button:hover {
 .theme-green .addBtn,
 .theme-orange .addBtn,
 .theme-pink .addBtn,
-.theme-black .addBtn {
+.theme-black .addBtn,
+.theme-white .addBtn {
     background: var(--theme-color);
 }
 
@@ -318,7 +321,8 @@ button:hover {
 .theme-green .profile-avatar,
 .theme-orange .profile-avatar,
 .theme-pink .profile-avatar,
-.theme-black .profile-avatar {
+.theme-black .profile-avatar,
+.theme-white .profile-avatar {
     background: var(--theme-color);
 }
 
@@ -329,7 +333,8 @@ button:hover {
 .theme-green .editProfileBtn,
 .theme-orange .editProfileBtn,
 .theme-pink .editProfileBtn,
-.theme-black .editProfileBtn {
+.theme-black .editProfileBtn,
+.theme-white .editprofileBtn {
     background: var(--theme-color);
 }
 
@@ -340,7 +345,8 @@ button:hover {
 .theme-green #profileUsernameDisplay,
 .theme-orange #profileUsernameDisplay,
 .theme-pink #profileUsernameDisplay,
-.theme-black #profileUsernameDisplay {
+.theme-black #profileUsernameDisplay,
+.theme-white #profileUsernameDisplay {
     color: var(--theme-color);
 }
 
