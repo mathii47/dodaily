@@ -10,7 +10,6 @@
 
 <body>
 
-    <!-- TOP BAR -->
     <div class="topbar">
         <div>
             <h1>DoDAILY</h1>
@@ -23,19 +22,11 @@
         </div>
     </div>
 
-
-    <!-- TASK COUNT -->
     <p id="taskCount">0 tasks pending</p>
 
-
-    <!-- ADD TASK -->
     <div class="task-form">
 
-        <input
-            type="text"
-            id="taskInput"
-            placeholder="Enter your task"
-        >
+        <input type="text" id="taskInput" placeholder="Enter your task">
 
         <select id="taskCategory">
             <option value="Work">Work</option>
@@ -60,16 +51,13 @@
 
     </div>
 
-
-    <!-- TASK LIST -->
     <ul id="taskList"></ul>
 
-
-    <!-- OVERLAY -->
     <div id="overlay" onclick="closeDrawer()"></div>
 
 
-    <!-- MAIN MENU -->
+    <!-- MENU -->
+
     <div id="sideDrawer" class="drawer">
 
         <div class="drawer-header">
@@ -115,6 +103,7 @@
 
 
     <!-- PROFILE -->
+
     <div id="profileDrawer" class="drawer">
 
         <div class="drawer-header">
@@ -130,7 +119,6 @@
             </button>
 
         </div>
-
 
         <div class="profile-content">
 
@@ -152,40 +140,35 @@
 
             <hr>
 
-
             <div class="profile-info">
 
                 <p>
-                    <strong>Name</strong>
-                    <br>
+                    <strong>Name</strong><br>
                     <span id="profileNameInfo">-</span>
                 </p>
 
                 <p>
-                    <strong>Username</strong>
-                    <br>
+                    <strong>Username</strong><br>
                     <span id="profileUsernameInfo">-</span>
                 </p>
 
                 <p>
-                    <strong>Email</strong>
-                    <br>
+                    <strong>Email</strong><br>
                     <span id="profileEmailInfo">-</span>
                 </p>
 
             </div>
-
 
             <button onclick="editProfile()" class="editProfileBtn">
                 Edit Profile
             </button>
 
         </div>
-
     </div>
 
 
     <!-- SETTINGS -->
+
     <div id="settingsDrawer" class="drawer">
 
         <div class="drawer-header">
@@ -201,7 +184,6 @@
             </button>
 
         </div>
-
 
         <div class="drawer-list">
 
@@ -223,6 +205,7 @@
                     <option value="green">Green</option>
                     <option value="orange">Orange</option>
                     <option value="pink">Pink</option>
+                    <option value="black">Black</option>
                 </select>
             </div>
 
@@ -238,7 +221,6 @@
             </div>
 
         </div>
-
     </div>
 
 
