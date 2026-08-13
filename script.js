@@ -6,7 +6,7 @@ window.onload = function () {
 
 
 // =========================
-// TASK FUNCTIONS
+// TASK
 // =========================
 
 function addTask() {
@@ -68,13 +68,13 @@ function renderTask(t) {
         ' <small>' +
         details +
         '</small></span>' +
-
         '<button onclick="editTask(this)">Edit</button>' +
-
         '<button onclick="deleteTask(this)">Delete</button>';
 
     if (t.completed) {
+
         let span = li.querySelector(".taskText");
+
         span.style.textDecoration = "line-through";
         span.style.color = "gray";
     }
@@ -129,13 +129,11 @@ function editTask(button) {
     let tasks = getTasks();
 
     let index =
-        Array.from(li.parentElement.children)
-        .indexOf(li);
+        Array.from(li.parentElement.children).indexOf(li);
 
     let t = tasks[index];
 
-    let newTask =
-        prompt("Edit task:", t.task);
+    let newTask = prompt("Edit task:", t.task);
 
     if (newTask === null) return;
 
@@ -162,16 +160,10 @@ function editTask(button) {
         JSON.stringify(tasks)
     );
 
-    li.remove();
-
     renderAllTasks();
 
     if (t.date && t.time) {
-        scheduleReminder(
-            t.task,
-            t.date,
-            t.time
-        );
+        scheduleReminder(t.task, t.date, t.time);
     }
 }
 
@@ -271,9 +263,7 @@ function removeTaskFromStorage(li) {
 function updateCount() {
 
     let count =
-        document.querySelectorAll(
-            "#taskList li"
-        ).length;
+        document.querySelectorAll("#taskList li").length;
 
     document.getElementById(
         "taskCount"
@@ -301,88 +291,73 @@ function toggleDarkMode() {
 
 
 // =========================
-// DRAWER
+// DRAWERS
 // =========================
 
 function openDrawer() {
 
-    document.getElementById(
-        "overlay"
-    ).classList.add("show");
+    document.getElementById("overlay")
+        .classList.add("show");
 
-    document.getElementById(
-        "sideDrawer"
-    ).classList.add("open");
+    document.getElementById("sideDrawer")
+        .classList.add("open");
 }
 
 
 function closeDrawer() {
 
-    document.getElementById(
-        "overlay"
-    ).classList.remove("show");
+    document.getElementById("overlay")
+        .classList.remove("show");
 
-    document.getElementById(
-        "sideDrawer"
-    ).classList.remove("open");
+    document.getElementById("sideDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "settingsDrawer"
-    ).classList.remove("open");
+    document.getElementById("settingsDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "profileDrawer"
-    ).classList.remove("open");
+    document.getElementById("profileDrawer")
+        .classList.remove("open");
 }
 
 
 function openSettingsPanel() {
 
-    document.getElementById(
-        "sideDrawer"
-    ).classList.remove("open");
+    document.getElementById("sideDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "settingsDrawer"
-    ).classList.add("open");
+    document.getElementById("settingsDrawer")
+        .classList.add("open");
 }
 
 
 function openProfile() {
 
-    document.getElementById(
-        "sideDrawer"
-    ).classList.remove("open");
+    document.getElementById("sideDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "settingsDrawer"
-    ).classList.remove("open");
+    document.getElementById("settingsDrawer")
+        .classList.remove("open");
 
     loadProfile();
 
-    document.getElementById(
-        "profileDrawer"
-    ).classList.add("open");
+    document.getElementById("profileDrawer")
+        .classList.add("open");
 
-    document.getElementById(
-        "overlay"
-    ).classList.add("show");
+    document.getElementById("overlay")
+        .classList.add("show");
 }
 
 
 function backToMenu() {
 
-    document.getElementById(
-        "settingsDrawer"
-    ).classList.remove("open");
+    document.getElementById("settingsDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "profileDrawer"
-    ).classList.remove("open");
+    document.getElementById("profileDrawer")
+        .classList.remove("open");
 
-    document.getElementById(
-        "sideDrawer"
-    ).classList.add("open");
+    document.getElementById("sideDrawer")
+        .classList.add("open");
 }
 
 
@@ -402,59 +377,42 @@ function loadProfile() {
         localStorage.getItem("profileEmail") || "";
 
 
-    if (name) {
-
-        document.getElementById(
-            "profileGreeting"
-        ).innerText =
-            "Hi, " + name;
-
-    } else {
-
-        document.getElementById(
-            "profileGreeting"
-        ).innerText = "";
-
-    }
+    document.getElementById("profileGreeting")
+        .innerText =
+        name ? "Hi, " + name : "";
 
 
-    document.getElementById(
-        "profileNameDisplay"
-    ).innerText =
+    document.getElementById("profileNameDisplay")
+        .innerText =
         name || "Your Name";
 
 
-    document.getElementById(
-        "profileUsernameDisplay"
-    ).innerText =
+    document.getElementById("profileUsernameDisplay")
+        .innerText =
         username
-            ? "@" + username.replace("@", "")
-            : "@username";
+        ? "@" + username.replace("@", "")
+        : "@username";
 
 
-    document.getElementById(
-        "profileEmailDisplay"
-    ).innerText =
+    document.getElementById("profileEmailDisplay")
+        .innerText =
         email || "your@email.com";
 
 
-    document.getElementById(
-        "profileNameInfo"
-    ).innerText =
+    document.getElementById("profileNameInfo")
+        .innerText =
         name || "-";
 
 
-    document.getElementById(
-        "profileUsernameInfo"
-    ).innerText =
+    document.getElementById("profileUsernameInfo")
+        .innerText =
         username
-            ? "@" + username.replace("@", "")
-            : "-";
+        ? "@" + username.replace("@", "")
+        : "-";
 
 
-    document.getElementById(
-        "profileEmailInfo"
-    ).innerText =
+    document.getElementById("profileEmailInfo")
+        .innerText =
         email || "-";
 }
 
@@ -499,32 +457,17 @@ function editProfile() {
 
 
     name = name.trim();
-
-    username =
-        username.trim().replace("@", "");
-
+    username = username.trim().replace("@", "");
     email = email.trim();
 
 
-    if (name === "") {
+    if (
+        name === "" ||
+        username === "" ||
+        email === ""
+    ) {
 
-        alert("Name cannot be empty.");
-
-        return;
-    }
-
-
-    if (username === "") {
-
-        alert("Username cannot be empty.");
-
-        return;
-    }
-
-
-    if (email === "") {
-
-        alert("Email cannot be empty.");
+        alert("Please fill all profile details.");
 
         return;
     }
@@ -548,35 +491,26 @@ function editProfile() {
 
     loadProfile();
 
-    alert(
-        "Profile updated successfully!"
-    );
+    alert("Profile updated successfully!");
 }
 
 
 // =========================
-// REMINDERS
+// NOTIFICATIONS
 // =========================
 
-function scheduleReminder(
-    task,
-    date,
-    time
-) {
+function scheduleReminder(task, date, time) {
 
     if (
         typeof Notification !== "undefined" &&
         Notification.permission !== "granted"
     ) {
-
         Notification.requestPermission();
     }
 
 
     let reminderTime =
-        new Date(
-            date + "T" + time
-        );
+        new Date(date + "T" + time);
 
     let delay =
         reminderTime - new Date();
@@ -584,32 +518,28 @@ function scheduleReminder(
 
     if (delay > 0) {
 
-        setTimeout(
-            function () {
+        setTimeout(function () {
 
-                if (
-                    typeof Notification !== "undefined" &&
-                    Notification.permission === "granted"
-                ) {
+            if (
+                typeof Notification !== "undefined" &&
+                Notification.permission === "granted"
+            ) {
 
-                    new Notification(
-                        "Task Reminder",
-                        {
-                            body: task
-                        }
-                    );
+                new Notification(
+                    "Task Reminder",
+                    {
+                        body: task
+                    }
+                );
 
-                } else {
+            } else {
 
-                    alert(
-                        "Reminder: " + task
-                    );
+                alert(
+                    "Reminder: " + task
+                );
+            }
 
-                }
-
-            },
-            delay
-        );
+        }, delay);
     }
 }
 
@@ -618,13 +548,12 @@ function toggleNotifPermission() {
 
     closeDrawer();
 
-
     if (
         typeof Notification === "undefined"
     ) {
 
         alert(
-            "Notifications are not supported in this browser."
+            "Notifications are not supported."
         );
 
         return;
@@ -636,7 +565,7 @@ function toggleNotifPermission() {
     ) {
 
         alert(
-            "Notifications are already allowed for this app."
+            "Notifications are already allowed."
         );
 
     } else if (
@@ -644,7 +573,7 @@ function toggleNotifPermission() {
     ) {
 
         alert(
-            "Notifications are blocked. Please enable them from your browser site settings."
+            "Notifications are blocked. Enable them from browser settings."
         );
 
     } else {
@@ -664,7 +593,6 @@ function toggleNotifPermission() {
                         "Notifications not allowed."
                     );
                 }
-
             });
     }
 }
@@ -689,17 +617,14 @@ function loadSettings() {
         || "medium";
 
 
-    document.getElementById(
-        "layoutSelect"
-    ).value = layout;
+    document.getElementById("layoutSelect")
+        .value = layout;
 
-    document.getElementById(
-        "themeSelect"
-    ).value = theme;
+    document.getElementById("themeSelect")
+        .value = theme;
 
-    document.getElementById(
-        "fontSelect"
-    ).value = font;
+    document.getElementById("fontSelect")
+        .value = font;
 
 
     applyLayout();
@@ -707,14 +632,12 @@ function loadSettings() {
     applyFontSize();
 
 
-    let dark =
-        localStorage.getItem("darkMode");
+    if (
+        localStorage.getItem("darkMode")
+        === "true"
+    ) {
 
-    if (dark === "true") {
-
-        document.body.classList.add(
-            "dark"
-        );
+        document.body.classList.add("dark");
     }
 }
 
@@ -722,9 +645,8 @@ function loadSettings() {
 function applyLayout() {
 
     let val =
-        document.getElementById(
-            "layoutSelect"
-        ).value;
+        document.getElementById("layoutSelect")
+        .value;
 
     localStorage.setItem(
         "layout",
@@ -745,9 +667,8 @@ function applyLayout() {
 function applyTheme() {
 
     let val =
-        document.getElementById(
-            "themeSelect"
-        ).value;
+        document.getElementById("themeSelect")
+        .value;
 
     localStorage.setItem(
         "theme",
@@ -758,7 +679,8 @@ function applyTheme() {
         "theme-indigo",
         "theme-green",
         "theme-orange",
-        "theme-pink"
+        "theme-pink",
+        "theme-black"
     );
 
     document.body.classList.add(
@@ -770,9 +692,8 @@ function applyTheme() {
 function applyFontSize() {
 
     let val =
-        document.getElementById(
-            "fontSelect"
-        ).value;
+        document.getElementById("fontSelect")
+        .value;
 
     localStorage.setItem(
         "fontSize",
@@ -806,7 +727,6 @@ function sortTasks() {
 
     if (choice === null) return;
 
-
     let tasks = getTasks();
 
 
@@ -820,7 +740,6 @@ function sortTasks() {
                     b.date || "9999"
                 )
             );
-
         });
 
     } else if (choice.trim() === "2") {
@@ -837,7 +756,6 @@ function sortTasks() {
                 order[a.priority] -
                 order[b.priority]
             );
-
         });
 
     } else if (choice.trim() === "3") {
@@ -847,7 +765,6 @@ function sortTasks() {
             return a.category.localeCompare(
                 b.category
             );
-
         });
 
     } else {
@@ -926,9 +843,7 @@ function clearAllTasks() {
 
     if (confirmClear) {
 
-        localStorage.removeItem(
-            "tasks"
-        );
+        localStorage.removeItem("tasks");
 
         renderAllTasks();
     }
