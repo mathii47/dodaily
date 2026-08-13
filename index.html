@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My To-Do List</title>
+    <title>DoDAILY - To-Do List</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon-192.png">
@@ -9,9 +10,10 @@
 
 <body>
 
+    <!-- TOP BAR -->
     <div class="topbar">
         <div>
-            <h1>My To-Do List</h1>
+            <h1>DoDAILY</h1>
             <p id="profileGreeting"></p>
         </div>
 
@@ -21,72 +23,102 @@
         </div>
     </div>
 
+
+    <!-- TASK COUNT -->
     <p id="taskCount">0 tasks pending</p>
 
-    <input type="text" id="taskInput" placeholder="Enter your task">
 
-    <select id="taskCategory">
-        <option value="Work">Work</option>
-        <option value="Personal">Personal</option>
-        <option value="Study">Study</option>
-        <option value="Other">Other</option>
-    </select>
+    <!-- ADD TASK -->
+    <div class="task-form">
 
-    <input type="date" id="taskDate">
-    <input type="time" id="taskTime">
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Enter your task"
+        >
 
-    <select id="taskPriority">
-        <option value="low">Low</option>
-        <option value="medium" selected>Medium</option>
-        <option value="high">High</option>
-    </select>
+        <select id="taskCategory">
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Study">Study</option>
+            <option value="Other">Other</option>
+        </select>
 
-    <button onclick="addTask()">Add Task</button>
+        <input type="date" id="taskDate">
 
+        <input type="time" id="taskTime">
+
+        <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button onclick="addTask()" class="addBtn">
+            Add Task
+        </button>
+
+    </div>
+
+
+    <!-- TASK LIST -->
     <ul id="taskList"></ul>
 
+
+    <!-- OVERLAY -->
     <div id="overlay" onclick="closeDrawer()"></div>
+
 
     <!-- MAIN MENU -->
     <div id="sideDrawer" class="drawer">
 
         <div class="drawer-header">
             <span>Menu</span>
-            <button onclick="closeDrawer()" class="closeBtn">X</button>
+
+            <button onclick="closeDrawer()" class="closeBtn">
+                X
+            </button>
         </div>
 
         <div class="drawer-list">
-            <button onclick="openProfile()">Your Profile</button>
 
-            <button onclick="openSettingsPanel()">Settings</button>
+            <button onclick="openProfile()">
+                👤 Your Profile
+            </button>
+
+            <button onclick="openSettingsPanel()">
+                ⚙️ Settings
+            </button>
 
             <button onclick="toggleNotifPermission()">
-                Notification Settings
+                🔔 Notification Settings
             </button>
 
             <button onclick="sortTasks()">
-                Sort Tasks
+                ↕️ Sort Tasks
             </button>
 
             <button onclick="exportTasks()">
-                Export / Backup Tasks
+                💾 Export / Backup Tasks
             </button>
 
             <button onclick="clearAllTasks()" class="danger">
-                Clear All Tasks
+                🗑️ Clear All Tasks
             </button>
 
             <button onclick="aboutApp()">
-                About
+                ℹ️ About
             </button>
+
         </div>
     </div>
 
 
-    <!-- PROFILE DRAWER -->
+    <!-- PROFILE -->
     <div id="profileDrawer" class="drawer">
 
         <div class="drawer-header">
+
             <button onclick="backToMenu()" class="closeBtn">
                 Back
             </button>
@@ -96,11 +128,15 @@
             <button onclick="closeDrawer()" class="closeBtn">
                 X
             </button>
+
         </div>
+
 
         <div class="profile-content">
 
-            <div class="profile-avatar">👤</div>
+            <div class="profile-avatar">
+                👤
+            </div>
 
             <h2 id="profileNameDisplay">
                 Your Name
@@ -116,40 +152,40 @@
 
             <hr>
 
+
             <div class="profile-info">
 
                 <p>
-                    <strong>Name</strong><br>
-                    <span id="profileNameInfo">
-                        Your Name
-                    </span>
+                    <strong>Name</strong>
+                    <br>
+                    <span id="profileNameInfo">-</span>
                 </p>
 
                 <p>
-                    <strong>Username</strong><br>
-                    <span id="profileUsernameInfo">
-                        @username
-                    </span>
+                    <strong>Username</strong>
+                    <br>
+                    <span id="profileUsernameInfo">-</span>
                 </p>
 
                 <p>
-                    <strong>Email</strong><br>
-                    <span id="profileEmailInfo">
-                        your@email.com
-                    </span>
+                    <strong>Email</strong>
+                    <br>
+                    <span id="profileEmailInfo">-</span>
                 </p>
 
             </div>
 
-            <button onclick="editProfile()">
+
+            <button onclick="editProfile()" class="editProfileBtn">
                 Edit Profile
             </button>
 
         </div>
+
     </div>
 
 
-    <!-- SETTINGS DRAWER -->
+    <!-- SETTINGS -->
     <div id="settingsDrawer" class="drawer">
 
         <div class="drawer-header">
@@ -165,6 +201,7 @@
             </button>
 
         </div>
+
 
         <div class="drawer-list">
 
@@ -201,6 +238,7 @@
             </div>
 
         </div>
+
     </div>
 
 
