@@ -264,18 +264,15 @@ button:hover {
     background: #4f46e5;
 }
 
-.theme-green button,
-.theme-green .profile-avatar {
+.theme-green button {
     background: #16a34a;
 }
 
-.theme-orange button,
-.theme-orange .profile-avatar {
+.theme-orange button {
     background: #ea580c;
 }
 
-.theme-pink button,
-.theme-pink .profile-avatar {
+.theme-pink button {
     background: #db2777;
 }
 
