@@ -6,6 +6,7 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="icon-192.png">
 </head>
+
 <body>
 
     <div class="topbar">
@@ -13,6 +14,7 @@
             <h1>My To-Do List</h1>
             <p id="profileGreeting"></p>
         </div>
+
         <div class="topbar-icons">
             <button onclick="toggleDarkMode()" id="darkBtn">🌙</button>
             <button onclick="openDrawer()" id="menuBtn">⋮</button>
@@ -22,57 +24,163 @@
     <p id="taskCount">0 tasks pending</p>
 
     <input type="text" id="taskInput" placeholder="Enter your task">
+
     <select id="taskCategory">
         <option value="Work">Work</option>
         <option value="Personal">Personal</option>
         <option value="Study">Study</option>
         <option value="Other">Other</option>
     </select>
+
     <input type="date" id="taskDate">
     <input type="time" id="taskTime">
+
     <select id="taskPriority">
         <option value="low">Low</option>
         <option value="medium" selected>Medium</option>
         <option value="high">High</option>
     </select>
+
     <button onclick="addTask()">Add Task</button>
 
     <ul id="taskList"></ul>
 
     <div id="overlay" onclick="closeDrawer()"></div>
 
+    <!-- MAIN MENU -->
     <div id="sideDrawer" class="drawer">
+
         <div class="drawer-header">
             <span>Menu</span>
             <button onclick="closeDrawer()" class="closeBtn">X</button>
         </div>
+
         <div class="drawer-list">
             <button onclick="openProfile()">Your Profile</button>
+
             <button onclick="openSettingsPanel()">Settings</button>
-            <button onclick="toggleNotifPermission()">Notification Settings</button>
-            <button onclick="sortTasks()">Sort Tasks</button>
-            <button onclick="exportTasks()">Export / Backup Tasks</button>
-            <button onclick="clearAllTasks()" class="danger">Clear All Tasks</button>
-            <button onclick="aboutApp()">About</button>
+
+            <button onclick="toggleNotifPermission()">
+                Notification Settings
+            </button>
+
+            <button onclick="sortTasks()">
+                Sort Tasks
+            </button>
+
+            <button onclick="exportTasks()">
+                Export / Backup Tasks
+            </button>
+
+            <button onclick="clearAllTasks()" class="danger">
+                Clear All Tasks
+            </button>
+
+            <button onclick="aboutApp()">
+                About
+            </button>
         </div>
     </div>
 
-    <div id="settingsDrawer" class="drawer">
+
+    <!-- PROFILE DRAWER -->
+    <div id="profileDrawer" class="drawer">
+
         <div class="drawer-header">
-            <button onclick="backToMenu()" class="closeBtn">Back</button>
-            <span>Settings</span>
-            <button onclick="closeDrawer()" class="closeBtn">X</button>
+            <button onclick="backToMenu()" class="closeBtn">
+                Back
+            </button>
+
+            <span>Your Profile</span>
+
+            <button onclick="closeDrawer()" class="closeBtn">
+                X
+            </button>
         </div>
+
+        <div class="profile-content">
+
+            <div class="profile-avatar">👤</div>
+
+            <h2 id="profileNameDisplay">
+                Your Name
+            </h2>
+
+            <p id="profileUsernameDisplay">
+                @username
+            </p>
+
+            <p id="profileEmailDisplay">
+                your@email.com
+            </p>
+
+            <hr>
+
+            <div class="profile-info">
+
+                <p>
+                    <strong>Name</strong><br>
+                    <span id="profileNameInfo">
+                        Your Name
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Username</strong><br>
+                    <span id="profileUsernameInfo">
+                        @username
+                    </span>
+                </p>
+
+                <p>
+                    <strong>Email</strong><br>
+                    <span id="profileEmailInfo">
+                        your@email.com
+                    </span>
+                </p>
+
+            </div>
+
+            <button onclick="editProfile()">
+                Edit Profile
+            </button>
+
+        </div>
+    </div>
+
+
+    <!-- SETTINGS DRAWER -->
+    <div id="settingsDrawer" class="drawer">
+
+        <div class="drawer-header">
+
+            <button onclick="backToMenu()" class="closeBtn">
+                Back
+            </button>
+
+            <span>Settings</span>
+
+            <button onclick="closeDrawer()" class="closeBtn">
+                X
+            </button>
+
+        </div>
+
         <div class="drawer-list">
+
             <div class="setting-row">
                 <span>Layout</span>
+
                 <select id="layoutSelect" onchange="applyLayout()">
                     <option value="compact">Compact</option>
                     <option value="spacious">Spacious</option>
                 </select>
             </div>
+
+
             <div class="setting-row">
                 <span>Theme Color</span>
+
                 <select id="themeSelect" onchange="applyTheme()">
                     <option value="indigo">Indigo</option>
                     <option value="green">Green</option>
@@ -80,48 +188,23 @@
                     <option value="pink">Pink</option>
                 </select>
             </div>
+
+
             <div class="setting-row">
                 <span>Font Size</span>
+
                 <select id="fontSelect" onchange="applyFontSize()">
                     <option value="small">Small</option>
                     <option value="medium" selected>Medium</option>
                     <option value="large">Large</option>
                 </select>
             </div>
+
         </div>
     </div>
+
 
     <script src="script.js"></script>
+
 </body>
 </html>
-<div id="settingsDrawer" class="drawer">
-    
-</div>
-<div id="profileDrawer" class="drawer">
-    <div class="drawer-header">
-        <button onclick="backToMenu()" class="closeBtn">Back</button>
-        <span>Your Profile</span>
-        <button onclick="closeDrawer()" class="closeBtn">X</button>
-    </div>
-
-    <div class="profile-content">
-        <div class="profile-avatar">👤</div>
-
-        <h2 id="profileName">Your Name</h2>
-        <p id="profileUsername">@username</p>
-        <p id="profileEmail">your@email.com</p>
-
-        <hr>
-
-        <div class="profile-info">
-            <p><strong>Name</strong><br>
-            <span id="profileName2">Your Name</span></p>
-
-            <p><strong>Username</strong><br>
-            <span id="profileUsername2">@username</span></p>
-
-            <p><strong>Email</strong><br>
-            <span id="profileEmail2">your@email.com</span></p>
-        </div>
-    </div>
-</div>
