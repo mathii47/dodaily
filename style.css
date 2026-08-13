@@ -299,7 +299,7 @@ button:hover {
 .theme-black {
     --theme-color: #000000;
 }
-.theme-white{
+.theme-default{
     --theme-color: #ffffff;
 }
 
@@ -310,7 +310,7 @@ button:hover {
 .theme-orange .addBtn,
 .theme-pink .addBtn,
 .theme-black .addBtn,
-.theme-white .addBtn {
+.theme-default .addBtn {
     background: var(--theme-color);
 }
 
@@ -322,7 +322,7 @@ button:hover {
 .theme-orange .profile-avatar,
 .theme-pink .profile-avatar,
 .theme-black .profile-avatar,
-.theme-white .profile-avatar {
+.theme-default .profile-avatar {
     background: var(--theme-color);
 }
 
@@ -334,7 +334,7 @@ button:hover {
 .theme-orange .editProfileBtn,
 .theme-pink .editProfileBtn,
 .theme-black .editProfileBtn,
-.theme-white .editprofileBtn {
+.theme-default .editprofileBtn {
     background: var(--theme-color);
 }
 
@@ -346,7 +346,7 @@ button:hover {
 .theme-orange #profileUsernameDisplay,
 .theme-pink #profileUsernameDisplay,
 .theme-black #profileUsernameDisplay,
-.theme-white #profileUsernameDisplay {
+.theme-default #profileUsernameDisplay {
     color: var(--theme-color);
 }
 
