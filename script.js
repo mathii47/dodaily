@@ -159,8 +159,8 @@ function closeDrawer() {
     document.getElementById("overlay").classList.remove("show");
     document.getElementById("sideDrawer").classList.remove("open");
     document.getElementById("settingsDrawer").classList.remove("open");
+    document.getElementById("profileDrawer").classList.remove("open");
 }
-
 function openSettingsPanel() {
     document.getElementById("sideDrawer").classList.remove("open");
     document.getElementById("settingsDrawer").classList.add("open");
@@ -168,31 +168,90 @@ function openSettingsPanel() {
 
 function backToMenu() {
     document.getElementById("settingsDrawer").classList.remove("open");
+    document.getElementById("profileDrawer").classList.remove("open");
     document.getElementById("sideDrawer").classList.add("open");
 }
 
 function loadProfile() {
-    let name = localStorage.getItem("profileName");
+    let name = localStorage.getItem("profileName") || "";
+    let username = localStorage.getItem("profileUsername") || "";
+    let email = localStorage.getItem("profileEmail") || "";
+
     if (name) {
         document.getElementById("profileGreeting").innerText = "Hi, " + name;
+    } else {
+        document.getElementById("profileGreeting").innerText = "";
     }
+
+    document.getElementById("profileNameDisplay").innerText =
+        name || "Your Name";
+
+    document.getElementById("profileUsernameDisplay").innerText =
+        username ? "@" + username.replace("@", "") : "@username";
+
+    document.getElementById("profileEmailDisplay").innerText =
+        email || "your@email.com";
+
+    document.getElementById("profileNameInfo").innerText =
+        name || "-";
+
+    document.getElementById("profileUsernameInfo").innerText =
+        username ? "@" + username.replace("@", "") : "-";
+
+    document.getElementById("profileEmailInfo").innerText =
+        email || "-";
 }
 
 function openProfile() {
-    let current = localStorage.getItem("profileName") || "";
-    let name = prompt("Enter your name:", current);
-    if (name === null) return;
-    name = name.trim();
-    if (name === "") {
-        localStorage.removeItem("profileName");
-        document.getElementById("profileGreeting").innerText = "";
-    } else {
-        localStorage.setItem("profileName", name);
-        document.getElementById("profileGreeting").innerText = "Hi, " + name;
-    }
-    closeDrawer();
-}
+    document.getElementById("sideDrawer").classList.remove("open");
+    document.getElementById("settingsDrawer").classList.remove("open");
 
+    loadProfile();
+
+    document.getElementById("profileDrawer").classList.add("open");
+    document.getElementById("overlay").classList.add("show");
+}
+function editProfile() {
+    let currentName = localStorage.getItem("profileName") || "";
+    let currentUsername = localStorage.getItem("profileUsername") || "";
+    let currentEmail = localStorage.getItem("profileEmail") || "";
+
+    let name = prompt("Enter your name:", currentName);
+    if (name === null) return;
+
+    let username = prompt("Enter your username:", currentUsername);
+    if (username === null) return;
+
+    let email = prompt("Enter your email:", currentEmail);
+    if (email === null) return;
+
+    name = name.trim();
+    username = username.trim().replace("@", "");
+    email = email.trim();
+
+    if (name === "") {
+        alert("Name cannot be empty.");
+        return;
+    }
+
+    if (username === "") {
+        alert("Username cannot be empty.");
+        return;
+    }
+
+    if (email === "") {
+        alert("Email cannot be empty.");
+        return;
+    }
+
+    localStorage.setItem("profileName", name);
+    localStorage.setItem("profileUsername", username);
+    localStorage.setItem("profileEmail", email);
+
+    loadProfile();
+
+    alert("Profile updated successfully!");
+}
 function loadSettings() {
     let layout = localStorage.getItem("layout") || "compact";
     let theme = localStorage.getItem("theme") || "indigo";
