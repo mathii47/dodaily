@@ -171,3 +171,18 @@ body.dark .topbar-icons button {
 
 body.theme-indigo #menuBtn { background: #4F46E5 !important; color: white !important; }
 body.theme-indigo button[onclick="addTask()"] { background: #4F46E5 !important; color:
+body.dark {
+    background: #222 !important;
+    color: white !important;
+}
+body.dark li {
+    background: #333 !important;
+    color: white !important;
+}
+body.dark #profileGreeting {
+    color: #aaa !important;
+}
+body.dark .topbar-icons button {
+    background: #333 !important;
+    color: white !important;
+}
